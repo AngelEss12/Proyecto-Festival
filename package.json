@@ -15,5 +15,8 @@
   "license": "ISC",
   "dependencies": {
     "sass": "^1.69.7"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2"
   }
 }
