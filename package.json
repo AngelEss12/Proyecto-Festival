@@ -4,7 +4,8 @@
   "description": "Proyecto con Gulp, SaSS y HTML",
   "main": "index.js",
   "scripts": {
-    "sass": "sass --watch src/scss:build/css"
+    "sass": "sass --watch src/scss:build/css",
+    "css": "gulp css"
   },
   "keywords": [
     "SaSS",
@@ -17,6 +18,7 @@
     "sass": "^1.69.7"
   },
   "devDependencies": {
-    "gulp": "^4.0.2"
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.1.0"
   }
 }
