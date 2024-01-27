@@ -1,5 +1,5 @@
-$rojo: blue;
+// Hace uso de la creacion del archivo index.scss y el @forward y @use
+@use 'base';
 
-body {
-    background-color: $rojo;
-}
+// Forma antigua de importar un archivo de sass al principal.
+@import 'content/contenido.scss';
