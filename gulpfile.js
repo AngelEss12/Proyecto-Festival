@@ -1,6 +1,11 @@
-const { src, dest, watch } = require("gulp");
+const { src, dest, watch, parallel } = require("gulp");
+
+// Dependencias para CSS
 const sass = require("gulp-sass")(require("sass"));
 const plumber = require("gulp-plumber");
+
+// Dependencias para imagenes
+const webp = require('gulp-webp');
 
 function css(done) {
     // Pasos para compilar el archivo de SaSS en JS
@@ -12,6 +17,17 @@ function css(done) {
     done(); // callback que avisa a gulp cuando llegamos al final de la ejecución.
 }
 
+function versionWebp(done) {
+    const opciones =  {
+        quality: 50
+    };
+
+    src('src/img/**/*.{png,jpg}')
+        .pipe(webp(opciones))
+        .pipe(dest('build/img'))
+    done();
+}
+
 function dev(done) {
     watch("src/scss/**/*.scss", css);
 
@@ -19,4 +35,5 @@ function dev(done) {
 }
 
 exports.css = css;
-exports.dev = dev;
+exports.versionWebp = versionWebp;
+exports.dev = parallel(dev, versionWebp);
