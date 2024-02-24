@@ -665,7 +665,7 @@ img {
 }
 .boletos .pase .nombre-pase {
   text-align: center;
-  font-size: 2.4rem;
+  font-size: 2.8rem;
   color: #FFFFFF;
 }
 .boletos .pase-header, .boletos .pase-footer {
@@ -702,4 +702,14 @@ img {
 .boletos .pase-footer p {
   font-size: 2.4rem;
   font-weight: 700;
+}
+
+.site-footer {
+  background-color: #F53756;
+  padding: 1rem;
+}
+.site-footer p {
+  margin: 0;
+  text-align: center;
+  color: #FFFFFF;
 }
