@@ -1,8 +1,11 @@
 const { src, dest, watch, parallel } = require("gulp");
 
 // Dependencias para CSS
-const sass = require("gulp-sass")(require("sass"));
-const plumber = require("gulp-plumber");
+const sass = require('gulp-sass')(require('sass'));
+const plumber = require('gulp-plumber');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
+const postcss = require('gulp-postcss');
 
 // Dependencias para imagenes
 const cache = require('gulp-cache');
@@ -15,6 +18,7 @@ function css(done) {
     src("src/scss/**/*.scss") // Paso 1: Identificiar el archivo de SaSS
         .pipe(plumber())
         .pipe(sass()) // Paso 2: Compilar
+        .pipe(postcss([autoprefixer(), cssnano()])) // Dependecias para dejar mejor el archivo de css esto se hace al final de cada proyecto
         .pipe(dest("build/css")); // Paso 3: Almacenar en disco duro
 
     done(); // callback que avisa a gulp cuando llegamos al final de la ejecución.
@@ -71,4 +75,4 @@ exports.js = javascript;
 exports.imagenes = imagenes;
 exports.versionWebp = versionWebp;
 exports.versionAvif = versionAvif;
-exports.dev = parallel(imagenes, versionWebp, versionAvif, javascript, dev);
+exports.dev = parallel(css, imagenes, versionWebp, versionAvif, javascript, dev);
