@@ -6,6 +6,7 @@ const plumber = require('gulp-plumber');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const postcss = require('gulp-postcss');
+const sourcemaps = require('gulp-sourcemaps');
 
 // Dependencias para imagenes
 const cache = require('gulp-cache');
@@ -16,9 +17,11 @@ const avif = require('gulp-avif');
 function css(done) {
     // Pasos para compilar el archivo de SaSS en JS
     src("src/scss/**/*.scss") // Paso 1: Identificiar el archivo de SaSS
+        .pipe(sourcemaps.init())
         .pipe(plumber())
         .pipe(sass()) // Paso 2: Compilar
-        .pipe(postcss([autoprefixer(), cssnano()])) // Dependecias para dejar mejor el archivo de css esto se hace al final de cada proyecto
+        .pipe(postcss([autoprefixer(), cssnano()])) // Mejora de css
+        .pipe(sourcemaps.write('.'))
         .pipe(dest("build/css")); // Paso 3: Almacenar en disco duro
 
     done(); // callback que avisa a gulp cuando llegamos al final de la ejecución.
